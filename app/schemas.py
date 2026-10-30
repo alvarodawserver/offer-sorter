@@ -1,6 +1,6 @@
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class WorkMode(str, Enum):
@@ -21,4 +21,5 @@ class OfferCreate(OfferBase):
 
 
 class OfferRead(OfferBase):
+    model_config = ConfigDict(from_attributes=True)
     id: int

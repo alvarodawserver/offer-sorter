@@ -1,22 +1,8 @@
-from itertools import count
-
-import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
-from app.routers import offers
 
 client = TestClient(app)
-
-
-SAMPLE_OFFERS = dict(offers.db_offers)
-
-
-@pytest.fixture(autouse=True)
-def reset_storage() -> None:
-    offers.db_offers.clear()
-    offers.db_offers.update(SAMPLE_OFFERS)
-    offers.id_counter = count(start=4)
 
 
 def test_read_existing_offer() -> None:
